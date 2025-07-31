@@ -1,8 +1,8 @@
-{ buildFHSUserEnv
+{ buildFHSEnv
 , writeShellScriptBin
 , ... }:
 let
-  fhs = buildFHSUserEnv {
+  fhs = buildFHSEnv {
     name = "appimage-env";
 
     # Most of the packages were taken from the Steam chroot

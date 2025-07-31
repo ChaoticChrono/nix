@@ -64,7 +64,7 @@
 
             environment.systemPackages = [
               (import ./appimage-wrap.nix {
-                 buildFHSUserEnv = pkgs.buildFHSUserEnv;
+                 buildFHSEnv = pkgs.buildFHSEnv;
                  writeShellScriptBin = pkgs.writeShellScriptBin;
                  pkgs = pkgs;
               })
