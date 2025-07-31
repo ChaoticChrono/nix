@@ -27,6 +27,7 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
+          ./appimage-wrap.nix
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-cpu-intel
           ({ config, pkgs, lib, ... }: {
