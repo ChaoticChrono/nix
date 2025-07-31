@@ -195,6 +195,8 @@ boot = {
       paths = with pkgs; [
         #libsForQt5.breeze-qt5  # for plasma
        gnome-themes-extra
+       adwaita-icon-theme-legacy
+       
       ];
       pathsToLink = [ "/share/icons" ];
     };
