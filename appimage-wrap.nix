@@ -9,7 +9,7 @@ let
     targetPkgs = pkgs: with pkgs; [
       gtk3
       bashInteractive
-      gnome.zenity
+      zenity
       python2
       xorg.xrandr
       which
@@ -31,20 +31,20 @@ let
       pulseaudio
 
       desktop-file-utils
-      xorg.libXcomposite
-      xorg.libXtst
-      xorg.libXrandr
-      xorg.libXext
-      xorg.libX11
-      xorg.libXfixes
+      libXcomposite
+      libXtst
+      libXrandr
+      libXext
+      libX11
+      libXfixes
       libGL
 
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-ugly
       gst_all_1.gst-plugins-base
       libdrm
-      xorg.xkeyboardconfig
-      xorg.libpciaccess
+      xkeyboardconfig
+      libpciaccess
 
       glib
       gtk2
@@ -52,16 +52,16 @@ let
       zlib
       gdk-pixbuf
 
-      xorg.libXinerama
-      xorg.libXdamage
-      xorg.libXcursor
-      xorg.libXrender
-      xorg.libXScrnSaver
-      xorg.libXxf86vm
-      xorg.libXi
-      xorg.libSM
-      xorg.libICE
-      gnome2.GConf
+      libXinerama
+      libXdamage
+      libXcursor
+      libXrender
+      libXScrnSaver
+      libXxf86vm
+      libXi
+      libSM
+      libICE
+      GConf
       freetype
       (curl.override { gnutlsSupport = true; opensslSupport = false; })
       nspr
@@ -81,14 +81,14 @@ let
       at-spi2-atk
       libudev0-shim
 
-      xorg.libXt
-      xorg.libXmu
-      xorg.libxcb
-      xorg.xcbutil
-      xorg.xcbutilwm
-      xorg.xcbutilimage
-      xorg.xcbutilkeysyms
-      xorg.xcbutilrenderutil
+      libXt
+      libXmu
+      libxcb
+      xcbutil
+      xcbutilwm
+      xcbutilimage
+      xcbutilkeysyms
+      xcbutilrenderutil
       libGLU
       libuuid
       libogg
@@ -141,7 +141,7 @@ let
       # libraries not on the upstream include list, but nevertheless expected
       # by at least one appimage
       libtool.lib # for Synfigstudio
-      xorg.libxshmfence # for apple-music-electron
+      libxshmfence # for apple-music-electron
       at-spi2-core
     ];
 
