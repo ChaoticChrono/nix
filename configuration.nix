@@ -65,15 +65,16 @@ boot = {
   networking.networkmanager.wifi.backend = "iwd";
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];  
+  networking.nameservers = [ "1.1.1.1#cloudflare-dns.com" "9.9.9.9#dns.quad9.net" ];
+
   services.resolved = {
   enable = true;
-  dns = [ "1.1.1.1#cloudflare-dns.com" "9.9.9.9#dns.quad9.net" ];
-  dnsOverTls = "yes"; # Options: "no", "opportunistic", "yes"
+  dnsovertls = "true";
+  dnssec = "true";
+  domains = [ "~." ];
   fallbackDns = [ "8.8.8.8" "1.0.0.1" ];
-  extraConfig = ''
-    DNSSEC=yes
-  '';
   };
+
   environment.etc."resolv.conf".source = "/run/systemd/resolve/stub-resolv.conf";
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
