@@ -38,6 +38,7 @@
 
               shellAliases = {
                 ll = "ls -l";
+                nix = "noglob nix" ;
                 update = "sudo nixos-rebuild switch";
               };
                
