@@ -289,7 +289,7 @@ boot = {
      git
      lz4
      azahar
-     ryubing
+     #ryubing
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
@@ -318,8 +318,8 @@ boot = {
     
   };
   nixpkgs.config.cudaSupport = true;
-  programs.appimage.enable = true;
-  programs.appimage.binfmt = true;
+  #programs.appimage.enable = true;
+  #programs.appimage.binfmt = true;
   
   programs.java = { enable = true; package = pkgs.temurin-bin; };
   # Disable the OpenSSH daemon.
