@@ -27,7 +27,11 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
-          ./appimage-wrap.nix
+            (import ./appimage-wrap.nix {
+             buildFHSUserEnv = nixpkgs.lib.buildFHSUserEnv;
+              writeShellScriptBin = nixpkgs.writeShellScriptBin;
+            pkgs = nixpkgs;
+          })
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-cpu-intel
           ({ config, pkgs, lib, ... }: {
