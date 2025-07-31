@@ -31,20 +31,20 @@ let
       pulseaudio
 
       desktop-file-utils
-      libXcomposite
-      libXtst
-      libXrandr
-      libXext
-      libX11
-      libXfixes
+      xorg.libXcomposite
+      xorg.libXtst
+      xorg.libXrandr
+      xorg.libXext
+      xorg.libX11
+      xorg.libXfixes
       libGL
 
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-ugly
       gst_all_1.gst-plugins-base
       libdrm
-      xkeyboardconfig
-      libpciaccess
+      xorg.xkeyboardconfig
+      xorg.libpciaccess
 
       glib
       gtk2
@@ -52,16 +52,16 @@ let
       zlib
       gdk-pixbuf
 
-      libXinerama
-      libXdamage
-      libXcursor
-      libXrender
-      libXScrnSaver
-      libXxf86vm
-      libXi
-      libSM
-      libICE
-      GConf
+      xorg.libXinerama
+      xorg.libXdamage
+      xorg.libXcursor
+      xorg.libXrender
+      xorg.libXScrnSaver
+      xorg.libXxf86vm
+      xorg.libXi
+      xorg.libSM
+      xorg.libICE
+      gnome2.GConf
       freetype
       (curl.override { gnutlsSupport = true; opensslSupport = false; })
       nspr
@@ -81,14 +81,14 @@ let
       at-spi2-atk
       libudev0-shim
 
-      libXt
-      libXmu
-      libxcb
-      xcbutil
-      xcbutilwm
-      xcbutilimage
-      xcbutilkeysyms
-      xcbutilrenderutil
+      xorg.libXt
+      xorg.libXmu
+      xorg.libxcb
+      xorg.xcbutil
+      xorg.xcbutilwm
+      xorg.xcbutilimage
+      xorg.xcbutilkeysyms
+      xorg.xcbutilrenderutil
       libGLU
       libuuid
       libogg
@@ -141,7 +141,7 @@ let
       # libraries not on the upstream include list, but nevertheless expected
       # by at least one appimage
       libtool.lib # for Synfigstudio
-      libxshmfence # for apple-music-electron
+      xorg.libxshmfence # for apple-music-electron
       at-spi2-core
     ];
 
