@@ -27,15 +27,15 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
-            (import ./appimage-wrap.nix {
-             buildFHSUserEnv = nixpkgs.lib.buildFHSUserEnv;
-              writeShellScriptBin = nixpkgs.writeShellScriptBin;
-            pkgs = nixpkgs;
-          })
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-cpu-intel
           ({ config, pkgs, lib, ... }: {
-            programs.zsh = {
+              (import ./appimage-wrap.nix {
+              buildFHSUserEnv = pkgs.buildFHSUserEnv;
+              writeShellScriptBin = pkgs.writeShellScriptBin;
+              pkgs = pkgs;
+              })
+              programs.zsh = {
               enable = true;
               enableCompletion = true;
               syntaxHighlighting.enable = true;
