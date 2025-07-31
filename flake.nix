@@ -30,11 +30,7 @@
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-cpu-intel
           ({ config, pkgs, lib, ... }: {
-              (import ./appimage-wrap.nix {
-              buildFHSUserEnv = pkgs.buildFHSUserEnv;
-              writeShellScriptBin = pkgs.writeShellScriptBin;
-              pkgs = pkgs;
-              })
+              
               programs.zsh = {
               enable = true;
               enableCompletion = true;
@@ -67,6 +63,11 @@
             };
 
             environment.systemPackages = [
+              (import ./appimage-wrap.nix {
+                 buildFHSUserEnv = pkgs.buildFHSUserEnv;
+                 writeShellScriptBin = pkgs.writeShellScriptBin;
+                 pkgs = pkgs;
+              })
               pkgs.zsh
               pkgs.zsh-autosuggestions
               pkgs.zsh-syntax-highlighting
