@@ -9,14 +9,17 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
-
+    aagl = {
+    url = "github:ezKEa/aagl-gtk-on-nix";
+    inputs.nixpkgs.follows = "nixpkgs"; 
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, ... }: {
+  outputs = { self, nixpkgs, lanzaboote, aagl, nixos-hardware, ... }: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -35,7 +38,7 @@
                 ll = "ls -l";
                 update = "sudo nixos-rebuild switch";
               };
-
+               
               interactiveShellInit = ''
                 # Load GRML config (provides key bindings, colors, etc.)
                 source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
@@ -65,7 +68,10 @@
               pkgs.grml-zsh-config
               pkgs.sbctl
             ];
-
+            
+            imports = [ aagl.nixosModules.default ];
+            nix.settings = aagl.nixConfig;
+            programs.anime-game-launcher.enable = true; 
             boot.loader.systemd-boot.enable = lib.mkForce false;
 
             boot.lanzaboote = {
