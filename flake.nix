@@ -63,11 +63,6 @@
             };
 
             environment.systemPackages = [
-              (import ./appimage-wrap.nix {
-                 buildFHSEnv = pkgs.buildFHSEnv;
-                 writeShellScriptBin = pkgs.writeShellScriptBin;
-                 pkgs = pkgs;
-              })
               pkgs.zsh
               pkgs.zsh-autosuggestions
               pkgs.zsh-syntax-highlighting

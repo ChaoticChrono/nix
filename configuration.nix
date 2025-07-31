@@ -272,9 +272,7 @@ boot = {
   dates = "weekly";
   options = "--delete-older-than 30d";
   };  
-  nixpkgs.config.permittedInsecurePackages = [
-                "python-2.7.18.8"
-              ];
+  
 # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
