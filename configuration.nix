@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, osConfig, modulesPath, ... }: {
 imports =
-    [ ./hardware-configuration.nix
+    [  #./hardware-configuration.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 boot = {

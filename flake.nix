@@ -8,7 +8,6 @@
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     aagl = {
     url = "github:ezKEa/aagl-gtk-on-nix";
@@ -27,6 +26,7 @@
 
         modules = [
           ./configuration.nix
+          ./hardware-configuration.nix
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-cpu-intel
           ({ config, pkgs, lib, ... }: {
