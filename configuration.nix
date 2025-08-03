@@ -118,7 +118,10 @@ boot = {
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Editor
   programs.nano.enable = true;
-  programs.nano.defaultEditor = true;
+  environment.variables = {
+  EDITOR = "nano";
+  VISUAL = "nano";
+  }; 
   #Apparmor
   security.apparmor.enable = true;
   security.apparmor.enableCache = true;
