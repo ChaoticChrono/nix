@@ -292,7 +292,7 @@ boot = {
      git
      lz4
      azahar
-     #ryubing
+     ryubing
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
