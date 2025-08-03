@@ -116,6 +116,9 @@ boot = {
   services.xserver.enable = false;
   # Wayland environment
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Editor
+  programs.nano.enable = true;
+  programs.nano.defaultEditor = true;
   #Apparmor
   security.apparmor.enable = true;
   security.apparmor.enableCache = true;
@@ -304,7 +307,6 @@ boot = {
   virtualisation.waydroid.enable = true;
   # Nvidia support
   hardware.graphics.enable = true;
-  programs.steam.gamescopeSession.enable = true;
   services.xserver.videoDrivers = [
     "modesetting"
     "nvidia"
@@ -321,8 +323,8 @@ boot = {
     
   };
   nixpkgs.config.cudaSupport = true;
-  #programs.appimage.enable = true;
-  #programs.appimage.binfmt = true;
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
   
   programs.java = { enable = true; package = pkgs.temurin-bin; };
   # Disable the OpenSSH daemon.
