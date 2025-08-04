@@ -9,7 +9,7 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
-    
+    flake-utils.url = "github:numtide/flake-utils";    
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, aagl, nixos-hardware, ... }: {
+  outputs = { self, nixpkgs, nur, lanzaboote, aagl, nixos-hardware, ... }: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -34,6 +34,7 @@
           ./hardware-configuration.nix
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-cpu-intel
+          nur.modules.nixos.default
           ({ config, pkgs, lib, ... }: {
               
               programs.zsh = {
