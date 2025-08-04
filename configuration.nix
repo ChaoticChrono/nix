@@ -303,6 +303,7 @@ boot = {
      wl-clipboard
      ffmpegthumbnailer
      gnomeExtensions.appindicator
+     waydroid-helper
  ];
   nix.settings.trusted-users = [ "root" "ved" ];
 
