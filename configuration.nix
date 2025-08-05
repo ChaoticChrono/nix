@@ -183,7 +183,7 @@ boot = {
           };
      };
   }];
-
+  # Enable Dbus-broker
    services.dbus = {
 	enable = true;
 	implementation = "broker";
@@ -284,7 +284,6 @@ boot = {
 # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget 
      btop
      showtime
@@ -303,7 +302,6 @@ boot = {
      wl-clipboard
      ffmpegthumbnailer
      gnomeExtensions.appindicator
-     waydroid-helper
  ];
   nix.settings.trusted-users = [ "root" "ved" ];
 
@@ -327,6 +325,7 @@ boot = {
     
   };
   nixpkgs.config.cudaSupport = true;
+  # Appimage support
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   
