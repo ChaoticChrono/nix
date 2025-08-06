@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, osConfig, modulesPath, ... }: {
 imports =
-    [  #./hardware-configuration.nix
+    [
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 boot = {
@@ -119,9 +119,7 @@ boot = {
   #Fwupdmgr
   services.fwupd.enable = true;
   # Flatpak
-  services.flatpak.enable = true;
-  # Enable the X11 windowing system.
-  services.xserver.enable = false;
+  services.flatpak.enable = true;;
   # Wayland environment
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Editor
@@ -341,7 +339,7 @@ boot = {
   # Disable the OpenSSH daemon.
   services.openssh.enable = false;
   
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
   
   i18n.inputMethod = {
   enable = true;
