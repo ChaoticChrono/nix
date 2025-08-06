@@ -31,7 +31,9 @@ boot = {
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
-
+   
+    #Enable proper tmpfs tmp 
+    tmp.useTmpfs = true;
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
@@ -42,6 +44,7 @@ boot = {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;  
+  
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.luks = {
@@ -74,7 +77,11 @@ boot = {
   domains = [ "~." ];
   fallbackDns = [ "8.8.8.8" "1.0.0.1" ];
   };
-
+  
+  systemd.services.nix-daemon = {
+  environment.TMPDIR = "/var/tmp";
+  };
+  
   environment.etc."resolv.conf".source = "/run/systemd/resolve/stub-resolv.conf";
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
