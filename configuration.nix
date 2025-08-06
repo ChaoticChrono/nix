@@ -119,7 +119,7 @@ boot = {
   #Fwupdmgr
   services.fwupd.enable = true;
   # Flatpak
-  services.flatpak.enable = true;;
+  services.flatpak.enable = true;
   # Wayland environment
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Editor
