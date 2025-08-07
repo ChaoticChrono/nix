@@ -241,10 +241,6 @@ boot = {
   enable = true;
   terminal = "ghostty";
   };
-  # Rust sudo
-  environment.systemPackages = [
-    (lib.hiPrio pkgs.uutils-coreutils-noprefix)
-  ];
   # Disable CUPS to print documents.
   services.printing.enable = false;
   hardware.sane.enable = false;
@@ -311,6 +307,8 @@ boot = {
      wl-clipboard
      ffmpegthumbnailer
      gnomeExtensions.appindicator
+     # Rust Sudo
+     (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
   nix.settings.trusted-users = [ "root" "ved" ];
 
