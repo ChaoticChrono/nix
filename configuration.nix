@@ -208,7 +208,7 @@ boot = {
         #libsForQt5.breeze-qt5  # for plasma
        gnome-themes-extra
        adwaita-icon-theme-legacy
-       
+       morewaita-icon-theme
       ];
       pathsToLink = [ "/share/icons" ];
     };
@@ -229,6 +229,7 @@ boot = {
       noto-fonts-emoji
       noto-fonts-cjk-sans
       nerd-fonts.adwaita-mono
+      adwaita-fonts
     ];
   };
   fonts.fontconfig.useEmbeddedBitmaps = true;
@@ -306,8 +307,17 @@ boot = {
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
+     
+     # Gnome extensions
      gnomeExtensions.appindicator
-     # Rust Sudo
+     gnomeExtensions.accent-directories
+     gnomeExtensions.overview-background
+     gnomeExtensions.gnome-40-ui-improvements
+     gnomeExtensions.adw-gtk3-colorizer
+     gnomeExtensions.pip-on-top
+     
+     
+     # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
   nix.settings.trusted-users = [ "root" "ved" ];

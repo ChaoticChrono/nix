@@ -15,26 +15,26 @@
   boot.initrd.luks = {
   devices = {
     swap = {
-      device = "/dev/disk/by-uuid/c4f1d032-62a1-4e41-b6da-1530d255cf09";
+      device = "/dev/disk/by-uuid/191ea1c6-ba1b-4a6a-9f8a-070dfe47bcfb";
       name = "swap";
     };
     root = {
-      device = "/dev/disk/by-uuid/22e6f296-d81f-487e-a537-8a555a3e886b"; # LUKS root partition UUID
+      device = "/dev/disk/by-uuid/7efa4c6a-175a-4df9-9a6f-ae42cdc6356a"; # LUKS root partition UUID
       name = "root";
      };
     };
    };
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/cbdd72a5-810a-4cea-a196-9a758173a9ff";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/169f1b9d-548a-4c6d-8e2e-a2c15d234633";
+      fsType = "xfs";
     };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/605C-A120";
+    { device = "/dev/disk/by-uuid/5D7E-A004";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/318dea88-22c3-409a-a80d-23def996d7e3"; }
+    [ { device = "/dev/disk/by-uuid/3a16e641-6555-4c1a-bbbb-6f7b6098cde6"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -42,8 +42,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp12s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  #networking.interfaces.enp12s0.useDHCP = lib.mkDefault true;
+  #networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
