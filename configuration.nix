@@ -48,18 +48,6 @@ boot = {
   
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
- # boot.initrd.luks = {
- # devices = {
- #   swap = {
- #     device = "/dev/disk/by-uuid/c4f1d032-62a1-4e41-b6da-1530d255cf09";
- #     name = "swap";
- #   };
- #   root = {
- #     device = "/dev/disk/by-uuid/22e6f296-d81f-487e-a537-8a555a3e886b"; # LUKS root partition UUID
- #     name = "root";
- #    };
- #   };
- #  };
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -131,6 +119,17 @@ boot = {
   #Apparmor
   security.apparmor.enable = true;
   security.apparmor.enableCache = true;
+  # Doas as sudo replacement
+  security.sudo.enable = false;
+  security.doas.enable = true;
+  security.doas.extraRules = [
+  {
+    groups = [ "wheel" ];
+    persist = true;       # Remembers authentication for a period
+    keepEnv = true;       # Keeps environment variables
+  }
+  ];
+  environment.shellAliases = { sudo = "doas"; };
   #Switcheroo
   services.switcherooControl.enable = true;
   # Enable the GNOME Desktop Environment.
