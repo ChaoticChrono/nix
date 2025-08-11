@@ -293,14 +293,10 @@ boot = {
   };
   # Filesystem hardening
   security.audit.enable = true;
-  #fileSystems."/tmp".options = [ "noexec" "nosuid" "nodev" ];
-  #fileSystems."/home".options = [ "nosuid" ];
-  #fileSystems."/var".options = [ "nosuid" "nodev" ];
   boot.kernel.sysctl = {
   "fs.protected_fifos" = 2;
   "fs.protected_regular" = 2;
   };
-  services.auditd.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
 
