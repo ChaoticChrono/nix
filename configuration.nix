@@ -10,11 +10,9 @@ imports =
 boot = {
     plymouth = {
       enable = true;
-      theme = "glitch";
+      theme = "nixos-bgrt-plymouth";
       themePackages = with pkgs; [
-        # By default we would install all themes
         nixos-bgrt-plymouth
-        adi1090x-plymouth-themes
       ];
     };
     # Enable "Silent boot"
@@ -27,6 +25,13 @@ boot = {
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
       "psi=1"
+      "slab_nomerge"
+      "init_on_alloc=1"
+      "init_on_free=1"
+      "page_alloc.shuffle=1"
+      "randomize_kstack_offset=on"
+      "pti=on"
+      "vsyscall=none"
     ];
     # Hide the OS choice for bootloaders.
     # It's still possible to open the bootloader list by pressing any key
@@ -56,9 +61,11 @@ boot = {
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
   networking.firewall.allowedTCPPorts = [ 57621 ];
-  networking.firewall.allowedUDPPorts = [ 5353 ];  
+  networking.firewall.allowedUDPPorts = [ 5353 ];
+  networking.firewall.checkReversePath = "strict"; # anti-spoofing
   networking.nameservers = [ "1.1.1.1#cloudflare-dns.com" "9.9.9.9#dns.quad9.net" ];
-
+  networking.networkmanager.plugins = [];
+  
   services.resolved = {
   enable = true;
   dnsovertls = "true";
@@ -119,6 +126,7 @@ boot = {
   #Apparmor
   security.apparmor.enable = true;
   security.apparmor.enableCache = true;
+  
   # Doas as sudo replacement
   security.sudo.enable = false;
   security.doas.enable = true;
@@ -132,6 +140,15 @@ boot = {
   environment.shellAliases = { sudo = "doas"; };
   #Switcheroo
   services.switcherooControl.enable = true;
+  
+  # Disabling needless services
+  services.avahi.enable = false;
+  services.openssh.enable = false;
+  
+  # Disable ModemManager
+  services.modemmanager.enable = false;
+  systemd.services.ModemManager.enable = false; # hard override
+ 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
@@ -232,6 +249,7 @@ boot = {
     ];
   };
   fonts.fontconfig.useEmbeddedBitmaps = true;
+  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -244,6 +262,7 @@ boot = {
   # Disable CUPS to print documents.
   services.printing.enable = false;
   hardware.sane.enable = false;
+  
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -254,11 +273,14 @@ boot = {
     pulse.enable = true;
     jack.enable = true;
   };
+   
+   # Enable Zram
     zramSwap = {
     enable = true;
     algorithm = "lz4";
     memoryPercent = 100;
   };
+  
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
@@ -271,7 +293,16 @@ boot = {
     
     ];
   };
-
+  # Filesystem hardening
+  security.audit.enable = true;
+  fileSystems."/tmp".options = [ "noexec" "nosuid" "nodev" ];
+  fileSystems."/home".options = [ "nosuid" ];
+  fileSystems."/var".options = [ "nosuid" "nodev" ];
+  boot.kernel.sysctl = {
+  "fs.protected_fifos" = 2;
+  "fs.protected_regular" = 2;
+  };
+  services.auditd.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -307,6 +338,10 @@ boot = {
      wl-clipboard
      ffmpegthumbnailer
      
+     # Apparmor 
+     apparmor-utils 
+     apparmor-profiles
+     
      # Gnome extensions
      gnomeExtensions.appindicator
      gnomeExtensions.accent-directories
@@ -315,11 +350,21 @@ boot = {
      gnomeExtensions.adw-gtk3-colorizer
      gnomeExtensions.pip-on-top
      
+     # Malloc
+     hardened_malloc
      
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
+  # Preload hardened malloc
+  environment.variables.LD_PRELOAD = "${pkgs.hardened_malloc}/lib/libhardened_malloc.so";
   nix.settings.trusted-users = [ "root" "ved" ];
+  
+  # Memory & Compiler Hardening
+  environment.variables = {
+  NIX_CFLAGS_COMPILE = "-fstack-protector-strong -D_FORTIFY_SOURCE=2";
+  NIX_LDFLAGS = "-Wl,-z,relro,-z,now";
+  };
 
   #Waydroid
   virtualisation.waydroid.enable = true;
