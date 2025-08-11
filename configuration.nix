@@ -340,14 +340,11 @@ boot = {
      gnomeExtensions.adw-gtk3-colorizer
      gnomeExtensions.pip-on-top
      
-     # Malloc
-     hardened_malloc
      
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
-  # Preload hardened malloc
-  environment.variables.LD_PRELOAD = "${pkgs.hardened_malloc}/lib/libhardened_malloc.so";
+  
   nix.settings.trusted-users = [ "root" "ved" ];
   
   # Memory & Compiler Hardening
