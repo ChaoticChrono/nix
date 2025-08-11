@@ -142,10 +142,6 @@ boot = {
   # Disabling needless services
   services.avahi.enable = false;
   services.openssh.enable = false;
-  
-  # Disable ModemManager
-  services.modemmanager.enable = false;
-  systemd.services.ModemManager.enable = false; # hard override
  
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
