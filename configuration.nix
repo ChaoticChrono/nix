@@ -45,7 +45,7 @@ boot = {
   environment.shells = with pkgs; [ zsh ];
   #Auto Update
   system.autoUpgrade.enable  = true;
-  system.autoUpgrade.allowReboot  = false;
+  system.autoUpgrade.allowReboot  = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -99,8 +99,6 @@ boot = {
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-    
-    hardware.intel-gpu-tools.enable = true;
 
   ### NixOS power management
     powerManagement = {
@@ -390,9 +388,8 @@ boot = {
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   
+  # Enable Java 
   programs.java = { enable = true; package = pkgs.temurin-bin; };
-  # Disable the OpenSSH daemon.
-  services.openssh.enable = false;
   
   system.stateVersion = "25.11"; # Did you read the comment?
   
