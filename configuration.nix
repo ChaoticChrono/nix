@@ -295,9 +295,9 @@ boot = {
   };
   # Filesystem hardening
   security.audit.enable = true;
-  fileSystems."/tmp".options = [ "noexec" "nosuid" "nodev" ];
-  fileSystems."/home".options = [ "nosuid" ];
-  fileSystems."/var".options = [ "nosuid" "nodev" ];
+  #fileSystems."/tmp".options = [ "noexec" "nosuid" "nodev" ];
+  #fileSystems."/home".options = [ "nosuid" ];
+  #fileSystems."/var".options = [ "nosuid" "nodev" ];
   boot.kernel.sysctl = {
   "fs.protected_fifos" = 2;
   "fs.protected_regular" = 2;
