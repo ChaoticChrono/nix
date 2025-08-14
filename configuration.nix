@@ -59,10 +59,8 @@ boot = {
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;  
   
-  # Use latest kernel.
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Enable zen kernel 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # Use Lqx kernel
+  boot.kernelPackages = pkgs.linuxPackages_lqx;
   
   networking.hostName = "nixos"; # Define your hostname.
 
