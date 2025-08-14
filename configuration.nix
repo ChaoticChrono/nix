@@ -38,8 +38,6 @@ boot = {
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
    
-    #Enable proper tmpfs tmp 
-    tmp.useTmpfs = true;
   };
   # Console font size
   console = {
@@ -80,10 +78,6 @@ boot = {
   dnssec = "true";
   domains = [ "~." ];
   fallbackDns = [ "8.8.8.8" "1.0.0.1" ];
-  };
-  
-  systemd.services.nix-daemon = {
-  environment.TMPDIR = "/var/tmp";
   };
   
   environment.etc."resolv.conf".source = "/run/systemd/resolve/stub-resolv.conf";
@@ -349,10 +343,10 @@ boot = {
      gnomeExtensions.pip-on-top
      
      # Ollama
-     ollama
-     (pkgs.ollama.override { 
-      acceleration = "cuda"; })
-     alpaca
+     #ollama
+     #(pkgs.ollama.override { 
+     # acceleration = "cuda"; })
+     #alpaca
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
