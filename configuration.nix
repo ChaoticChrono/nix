@@ -350,7 +350,10 @@ boot = {
      gnomeExtensions.adw-gtk3-colorizer
      gnomeExtensions.pip-on-top
      
-     
+     # Ollama
+     ollama
+     (pkgs.ollama.override { 
+      acceleration = "cuda"; })
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
