@@ -354,6 +354,7 @@ boot = {
      ollama
      (pkgs.ollama.override { 
       acceleration = "cuda"; })
+     alpaca
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
