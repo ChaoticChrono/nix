@@ -318,7 +318,6 @@ boot = {
      papers
      ghostty
      sbctl
-     niv
      spotify
      adw-gtk3
      gnome-tweaks
@@ -351,7 +350,7 @@ boot = {
     ln -sf ${pkgs.ghostty}/bin/ghostty /usr/bin/gnome-terminal
   '';
   environment.binAliases = {
-  gnome-terminal = "/run/current-system/sw/bin/ghostty";
+    gnome-terminal = "${pkgs.ghostty}/bin/ghostty";
   };
   
   nix.settings.trusted-users = [ "root" "ved" ];
