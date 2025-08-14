@@ -60,8 +60,10 @@ boot = {
   boot.initrd.systemd.enable = true;  
   
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Enable zen kernel 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  
   networking.hostName = "nixos"; # Define your hostname.
 
   # Enable networking
