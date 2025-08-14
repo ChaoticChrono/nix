@@ -350,7 +350,10 @@ boot = {
   system.activationScripts.createGnomeTerminalSymlink.text = ''
     ln -sf ${pkgs.ghostty}/bin/ghostty /usr/bin/gnome-terminal
   '';
-    
+  environment.binAliases = {
+  gnome-terminal = "/run/current-system/sw/bin/ghostty";
+  };
+  
   nix.settings.trusted-users = [ "root" "ved" ];
   
   # Memory & Compiler Hardening
