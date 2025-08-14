@@ -343,10 +343,11 @@ boot = {
      gnomeExtensions.pip-on-top
      
      # Ollama
-     #ollama
-     #(pkgs.ollama.override { 
-     # acceleration = "cuda"; })
-     #alpaca
+     ollama
+     (pkgs.ollama.override { 
+      acceleration = "cuda"; })
+     alpaca
+     
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
