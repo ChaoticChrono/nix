@@ -347,8 +347,8 @@ boot = {
  ];
  
   # GNOME workaround to override hardcoded terminal
-  system.postInstall = ''
-    ln -sf $(which ghostty) /usr/bin/gnome-terminal
+  system.activationScripts.createGnomeTerminalSymlink.text = ''
+    ln -sf ${pkgs.ghostty}/bin/ghostty /usr/bin/gnome-terminal
   '';
     
   nix.settings.trusted-users = [ "root" "ved" ];
