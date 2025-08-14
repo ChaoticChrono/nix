@@ -345,7 +345,12 @@ boot = {
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
-  
+ 
+  # GNOME workaround to override hardcoded terminal
+  system.postInstall = ''
+    ln -sf $(which ghostty) /usr/bin/gnome-terminal
+  '';
+    
   nix.settings.trusted-users = [ "root" "ved" ];
   
   # Memory & Compiler Hardening
