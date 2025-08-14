@@ -347,10 +347,10 @@ boot = {
  
   # GNOME workaround to override hardcoded terminal
   system.activationScripts.createGnomeTerminalSymlink.text = ''
-    ln -sf ${pkgs.ghostty}/bin/ghostty /usr/bin/gnome-terminal
+    ln -sf ${pkgs.ghostty}/bin/ghostty /usr/local/bin/gnome-terminal
   '';
   environment.shellAliases = {
-    "gnome-terminal" = "${pkgs.ghostty}/bin/ghostty";
+    "gnome-terminal" = "ghostty";
   };
   
   nix.settings.trusted-users = [ "root" "ved" ];
