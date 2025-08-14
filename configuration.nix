@@ -349,9 +349,10 @@ boot = {
   system.activationScripts.createGnomeTerminalSymlink.text = ''
     ln -sf ${pkgs.ghostty}/bin/ghostty /usr/bin/gnome-terminal
   '';
-  #environment.binAliases = {
-  #  gnome-terminal = "${pkgs.ghostty}/bin/ghostty";
-  #};
+  environment.binAliases = {
+  gnome-terminal = "${pkgs.ghostty}/bin/ghostty";
+  };
+
   
   nix.settings.trusted-users = [ "root" "ved" ];
   
