@@ -6,7 +6,7 @@
 imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
-          ./ghostty.nix
+          ./ptyxis.nix
     ];
 boot = {
     plymouth = {
@@ -254,7 +254,7 @@ boot = {
   };
   programs.nautilus-open-any-terminal = {
   enable = true;
-  terminal = "ghostty";
+  terminal = "ptyxis";
   };
   # Disable CUPS to print documents.
   services.printing.enable = false;
@@ -328,8 +328,7 @@ boot = {
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
-     #Ghostty magic
-     ghostty
+     ptyxis
      
      # Use fhs version for extensions
      vscode.fhs
