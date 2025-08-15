@@ -328,7 +328,7 @@ boot = {
      wl-clipboard
      ffmpegthumbnailer
      ptyxis
-     
+     signal-desktop
      # Use fhs version for extensions
      vscode.fhs
      # Apparmor 
