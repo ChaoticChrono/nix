@@ -349,6 +349,11 @@ boot = {
   #Nix ld
   programs.nix-ld.enable = true;
   
+  #Nix direnv
+  programs.direnv.nix-direnv.enable = true;
+  programs.direnv.loadInNixShell = true;
+  programs.direnv.enableZshIntegration = true;
+  programs.direnv.enable = true;
   #Vscode
   # needed for rust lang server and rust-analyzer extension
   programs.vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
