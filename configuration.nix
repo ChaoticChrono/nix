@@ -328,7 +328,7 @@ boot = {
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
-     
+     vscode.fhs
      # Apparmor 
      apparmor-utils 
      apparmor-profiles
@@ -344,7 +344,13 @@ boot = {
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
- 
+  #Nix ld
+  programs.nix-ld.enable = true;
+  
+  #Vscode
+  # needed for rust lang server and rust-analyzer extension
+  programs.vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+  
   # GNOME workaround to override hardcoded terminal
   system.activationScripts.createGnomeTerminalSymlink.text = ''
     ln -sf ${pkgs.ghostty}/bin/ghostty /usr/local/bin/gnome-terminal
