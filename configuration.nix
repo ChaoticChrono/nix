@@ -253,7 +253,7 @@ boot = {
   };
   programs.nautilus-open-any-terminal = {
   enable = true;
-  terminal = "ptyxis";
+  terminal = "ghostty";
   };
   # Disable CUPS to print documents.
   services.printing.enable = false;
@@ -327,7 +327,7 @@ boot = {
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
-     ptyxis
+     ghostty
      signal-desktop
      # Use fhs version for extensions
      vscode.fhs
