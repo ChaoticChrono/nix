@@ -316,7 +316,6 @@ boot = {
      btop
      showtime
      papers
-     ghostty
      sbctl
      spotify
      adw-gtk3
@@ -328,6 +327,10 @@ boot = {
      tpm2-tss 
      wl-clipboard
      ffmpegthumbnailer
+     #Ghostty magic
+     ghostty
+     
+     # Use fhs version for extensions
      vscode.fhs
      # Apparmor 
      apparmor-utils 
@@ -350,14 +353,6 @@ boot = {
   #Vscode
   # needed for rust lang server and rust-analyzer extension
   programs.vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
-  
-  # GNOME workaround to override hardcoded terminal
-  system.activationScripts.createGnomeTerminalSymlink.text = ''
-    ln -sf ${pkgs.ghostty}/bin/ghostty /usr/local/bin/gnome-terminal
-  '';
-  environment.shellAliases = {
-    "gnome-terminal" = "ghostty";
-  };
   
   nix.settings.trusted-users = [ "root" "ved" ];
   
