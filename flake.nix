@@ -52,16 +52,18 @@
                "pti=on"
                "vsyscall=none"
               ];
-              loader.timeout = 0;
-              }; 
-              boot.lanzaboote = {
+              loader = {
+                timeout = 0;
+                systemd-boot.enable = lib.mkForce false;
+                efi.canTouchEfiVariables = true;
+                initrd.systemd.enable = true;
+                kernelPackages = pkgs.linuxPackages_lqx;
+              };
+              lanzaboote = {
                enable = true;
                pkiBundle = "/var/lib/sbctl";
               }; 
-              boot.loader.systemd-boot.enable = lib.mkForce false;
-              boot.loader.efi.canTouchEfiVariables = true;
-              boot.initrd.systemd.enable = true;  
-              boot.kernelPackages = pkgs.linuxPackages_lqx;
+              };
               console = {
                earlySetup = true;
                font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
@@ -141,24 +143,21 @@
                 promptInit = "";
                 };
               };
-              networking.hostName = "nixos";
-
-              # Enable networking
-              networking.networkmanager.enable = true;
-              networking.wireless.iwd.enable = true;
-              networking.networkmanager.wifi.backend = "iwd";
-              networking.firewall.allowedTCPPorts = [ 57621 ];
-              networking.firewall.allowedUDPPorts = [ 5353 ];
-              networking.firewall.checkReversePath = "strict"; # anti-spoofing
-              networking.nameservers = [ "1.1.1.1#cloudflare-dns.com" "9.9.9.9#dns.quad9.net" ];
-              networking.networkmanager.plugins = [];
+              networking = { 
+                hostName = "nixos";
+                networkmanager = {
+                  enable = true;
+                  wifi.backend = "iwd";
+                  plugins = [];
+                   };
+                wireless.iwd.enable = true;
+                firewall = { 
+                  allowedTCPPorts = [ 57621 ];
+                  allowedUDPPorts = [ 5353 ];
+                  checkReversePath = "strict";
+                }; 
+                 nameservers = [ "1.1.1.1#cloudflare-dns.com" "9.9.9.9#dns.quad9.net" ];
               
-              services.resolved = {
-               enable = true;
-               dnsovertls = "true";
-               dnssec = "true";
-               domains = [ "~." ];
-              fallbackDns = [ "8.8.8.8" "1.0.0.1" ];
               };
               time.timeZone = "Asia/Kolkata";
               i18n = { 
@@ -218,6 +217,13 @@
                  "modesetting"
                  "nvidia"
                 ];
+                resolved = {
+                 enable = true;
+                 dnsovertls = "true";
+                 dnssec = "true";
+                 domains = [ "~." ];
+                 fallbackDns = [ "8.8.8.8" "1.0.0.1" ];
+                };
                 avahi.enable = false;
                 openssh.enable = false;
                 printing.enable = false;
@@ -236,7 +242,7 @@
                  keepEnv = true;       
                  }
                 ];
-
+              
               };
 
               hardware = {
@@ -387,8 +393,8 @@
                nerd-fonts.adwaita-mono
                adwaita-fonts
                ];
+               fontconfig.useEmbeddedBitmaps = true;
               };
-              fonts.fontconfig.useEmbeddedBitmaps = true;
              
               zramSwap = {
               enable = true;
@@ -396,18 +402,24 @@
               memoryPercent = 100;
               };
   
-              nixpkgs.config.allowUnfree = true;
-              nix.settings.experimental-features = [ "nix-command" "flakes" ];
-              nix.settings.auto-optimise-store = true;
-              nix.gc = {
-              automatic = true;
-              dates = "weekly";
-              options = "--delete-older-than 30d";
-              };  
-              nix.settings.trusted-users = [ "root" "ved" ];
-              nixpkgs.config.cudaSupport = true;
-
-  
+              nixpkgs = { 
+                config = {
+                 allowUnfree = true;
+                 cudaSupport = true;
+               }; 
+              };
+              nix = { 
+               settings = { 
+                experimental-features = [ "nix-command" "flakes" ];
+                auto-optimise-store = true;
+                trusted-users = [ "root" "ved" ];
+              };
+              gc = {
+               automatic = true;
+               dates = "weekly";
+               options = "--delete-older-than 30d";
+              };
+              };
               system.activationScripts.binbash = ''
               mkdir -p /bin
               ln -sf ${pkgs.bashInteractive}/bin/bash /bin/bash
