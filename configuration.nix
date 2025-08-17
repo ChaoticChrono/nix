@@ -142,8 +142,6 @@ boot = {
   services.switcherooControl.enable = true;
   
   #Enable bash symlink for legacy software 
-  
-  environment.systemPackages = [ pkgs.bashInteractive ];
 
   environment.pathsToLink = [ "/bin" ];
 
@@ -338,6 +336,7 @@ boot = {
      ffmpegthumbnailer
      ghostty
      signal-desktop
+     bashInteractive
      # Use fhs version for extensions
      vscode.fhs
      # Apparmor 
