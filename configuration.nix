@@ -141,6 +141,9 @@ boot = {
   #Switcheroo
   services.switcherooControl.enable = true;
   
+  #Enable envfs for legacy software 
+  services.envfs.enable = true;
+  
   # Disabling needless services
   services.avahi.enable = false;
   services.openssh.enable = false;
@@ -284,7 +287,7 @@ boot = {
   users.users.ved = {
     isNormalUser = true;
     description = "Vedanta Singh";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel"  "fuse" ];
     packages = with pkgs; [
     
     ];
