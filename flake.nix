@@ -56,9 +56,9 @@
                 timeout = 0;
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
-                initrd.systemd.enable = true;
                 kernelPackages = pkgs.linuxPackages_lqx;
               };
+              initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
                pkiBundle = "/var/lib/sbctl";
