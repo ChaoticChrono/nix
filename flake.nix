@@ -56,8 +56,8 @@
                 timeout = 0;
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
-                kernelPackages = pkgs.linuxPackages_lqx;
               };
+              kernelPackages = pkgs.linuxPackages_lqx;
               initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
