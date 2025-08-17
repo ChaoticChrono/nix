@@ -141,11 +141,15 @@ boot = {
   #Switcheroo
   services.switcherooControl.enable = true;
   
-  #Enable envfs for legacy software 
-  services.envfs.enable = true;
-  services.envfs.mounts = {
-    "/bin/bash" = "${pkgs.bash}/bin/bash";
-  };  
+  #Enable bash symlink for legacy software 
+  
+  environment.systemPackages = [ pkgs.bashInteractive ];
+
+  environment.pathsToLink = [ "/bin" ];
+
+  environment.extraInit = ''
+    ln -sf ${pkgs.bashInteractive}/bin/bash /bin/bash
+  '';
   # Disabling needless services
   services.avahi.enable = false;
   services.openssh.enable = false;
