@@ -351,90 +351,68 @@
                 systemd.tmpfiles.rules = [
                  ''f+ /run/gdm/.config/monitors.xml - gdm gdm - <monitors version="2"><configuration><layoutmode>logical</layoutmode><logicalmonitor><x>0</x><y>0</y><scale>1.5</scale><primary>yes</primary><monitor><monitorspec><connector>eDP-1</connector><vendor>AUO</vendor><product>0xd1ed</product><serial>0x00000000</serial></monitorspec><mode><width>1920</width><height>1080</height><rate>120.213</rate></mode></monitor></logicalmonitor></configuration></monitors>''
                 ];
-                  #Font setup
-  system.fsPackages = [ pkgs.bindfs ];
-  fileSystems = let
-    mkRoSymBind = path: {
-      device = path;
-      fsType = "fuse.bindfs";
-      options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
-    };
-    aggregatedIcons = pkgs.buildEnv {
-      name = "system-icons";
-      paths = with pkgs; [
-        #libsForQt5.breeze-qt5  # for plasma
-       gnome-themes-extra
-       adwaita-icon-theme-legacy
-       morewaita-icon-theme
-      ];
-      pathsToLink = [ "/share/icons" ];
-    };
-    aggregatedFonts = pkgs.buildEnv {
-      name = "system-fonts";
-      paths = config.fonts.packages;
-      pathsToLink = [ "/share/fonts" ];
-    };
-  in {
-    "/usr/share/icons" = mkRoSymBind "${aggregatedIcons}/share/icons";
-    "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
-  };
+                  
+               system.fsPackages = [ pkgs.bindfs ];
+               fileSystems = let
+               mkRoSymBind = path: {
+               device = path;
+               fsType = "fuse.bindfs";
+               options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
+               };
+               aggregatedIcons = pkgs.buildEnv {
+               name = "system-icons";
+               paths = with pkgs; [
+               gnome-themes-extra
+               adwaita-icon-theme-legacy
+               morewaita-icon-theme
+               ];
+               pathsToLink = [ "/share/icons" ];
+               };
+               aggregatedFonts = pkgs.buildEnv {
+               name = "system-fonts";
+               paths = config.fonts.packages;
+               pathsToLink = [ "/share/fonts" ];
+               };
+              in {
+               "/usr/share/icons" = mkRoSymBind "${aggregatedIcons}/share/icons";
+               "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
+               };
 
-  fonts = {
-    fontDir.enable = true;
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-emoji
-      noto-fonts-cjk-sans
-      nerd-fonts.adwaita-mono
-      adwaita-fonts
-    ];
-  };
-  fonts.fontconfig.useEmbeddedBitmaps = true;
+              fonts = {
+               fontDir.enable = true;
+               packages = with pkgs; [
+               noto-fonts
+               noto-fonts-emoji
+               noto-fonts-cjk-sans
+               nerd-fonts.adwaita-mono
+               adwaita-fonts
+               ];
+              };
+              fonts.fontconfig.useEmbeddedBitmaps = true;
+             
+              zramSwap = {
+              enable = true;
+              algorithm = "lz4";
+              memoryPercent = 100;
+              };
   
-  
-  
-  
-    
-   
-   # Enable Zram
-    zramSwap = {
-    enable = true;
-    algorithm = "lz4";
-    memoryPercent = 100;
-  };
-  
-  
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  # Extra nix options
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.auto-optimise-store = true;
-  nix.gc = {
-  automatic = true;
-  dates = "weekly";
-  options = "--delete-older-than 30d";
-  };  
-  
-
-  # Ensure /bin exists and link bash there
-  system.activationScripts.binbash = ''
-    mkdir -p /bin
-    ln -sf ${pkgs.bashInteractive}/bin/bash /bin/bash
-  '';
-  
- 
-  
-  
-  nix.settings.trusted-users = [ "root" "ved" ];
-  
-  
-
-
-  nixpkgs.config.cudaSupport = true;
+              nixpkgs.config.allowUnfree = true;
+              nix.settings.experimental-features = [ "nix-command" "flakes" ];
+              nix.settings.auto-optimise-store = true;
+              nix.gc = {
+              automatic = true;
+              dates = "weekly";
+              options = "--delete-older-than 30d";
+              };  
+              nix.settings.trusted-users = [ "root" "ved" ];
+              nixpkgs.config.cudaSupport = true;
 
   
-  system.stateVersion = "25.11"; # Did you read the comment?
-    
+              system.activationScripts.binbash = ''
+              mkdir -p /bin
+              ln -sf ${pkgs.bashInteractive}/bin/bash /bin/bash
+              '';
+              system.stateVersion = "25.11"; 
           })
         ];
       };
