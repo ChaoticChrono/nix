@@ -141,13 +141,6 @@ boot = {
   #Switcheroo
   services.switcherooControl.enable = true;
   
-  #Enable bash symlink for legacy software 
-
-  environment.pathsToLink = [ "/bin" ];
-
-  environment.extraInit = ''
-    ln -sf ${pkgs.bashInteractive}/bin/bash /bin/bash
-  '';
   # Disabling needless services
   services.avahi.enable = false;
   services.openssh.enable = false;
@@ -354,6 +347,12 @@ boot = {
      # Rust core utils
      (pkgs.uutils-coreutils.override { prefix = ""; })
  ];
+  # Ensure /bin exists and link bash there
+  system.activationScripts.binbash = ''
+    mkdir -p /bin
+    ln -sf ${pkgs.bashInteractive}/bin/bash /bin/bash
+  '';
+  
   #Nix ld
   programs.nix-ld.enable = true;
   
@@ -362,6 +361,7 @@ boot = {
   programs.direnv.loadInNixShell = true;
   programs.direnv.enableZshIntegration = true;
   programs.direnv.enable = true;
+  
   #Vscode
   # needed for rust lang server and rust-analyzer extension
   programs.vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
