@@ -143,7 +143,9 @@ boot = {
   
   #Enable envfs for legacy software 
   services.envfs.enable = true;
-  
+  services.envfs.mounts = {
+    "/bin/bash" = "${pkgs.bash}/bin/bash";
+  };  
   # Disabling needless services
   services.avahi.enable = false;
   services.openssh.enable = false;
