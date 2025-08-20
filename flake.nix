@@ -253,7 +253,6 @@
                   };
                 nvidia = {
                   open = true;
-                  cudaSupport = true;
                   prime = {
                     offload = {
                       enable = true;
