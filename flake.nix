@@ -224,6 +224,8 @@
                  domains = [ "~." ];
                  fallbackDns = [ "8.8.8.8" "1.0.0.1" ];
                 };
+                ananicy.enable = true;
+                fstrim.enable = true;
                 avahi.enable = false;
                 openssh.enable = false;
                 printing.enable = false;
@@ -346,6 +348,11 @@
                  zsh-history-substring-search
                  grml-zsh-config
                  sbctl
+                 cudaPackages.cudatoolkit
+                 cudaPackages.cudnn
+                 cudaPackages.tensorrt
+                 
+
               ];
               };
                
