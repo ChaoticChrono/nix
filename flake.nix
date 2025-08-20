@@ -350,7 +350,6 @@
                  sbctl
                  cudaPackages.cudatoolkit
                  cudaPackages.cudnn
-                 cudaPackages.tensorrt
                  
 
               ];
