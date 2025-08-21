@@ -50,7 +50,7 @@
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
               };
-              kernelPackages = pkgs.linuxPackages_xanmod;
+              kernelPackages = pkgs.linuxPackages_zen;
               initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
