@@ -44,20 +44,13 @@
                "udev.log_priority=3"
                "rd.systemd.show_status=auto"
                "psi=1"
-               "slab_nomerge"
-               "init_on_alloc=1"
-               "init_on_free=1"
-               "page_alloc.shuffle=1"
-               "randomize_kstack_offset=on"
-               "pti=on"
-               "vsyscall=none"
               ];
               loader = {
                 timeout = 0;
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
               };
-              kernelPackages = pkgs.linuxPackages_lqx;
+              kernelPackages = pkgs.linuxPackages_cachyos;
               initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
