@@ -314,6 +314,7 @@
                  sbctl
                  spotify
                  adw-gtk3
+                 xdg-terminal-exec
                  gnome-tweaks
                  git
                  lz4
