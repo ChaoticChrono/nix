@@ -81,6 +81,7 @@
               direnv.enable = true;
               vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
               nano.enable = true;
+              gamemode.enable = true;
               dconf = {
                    enable = true;
                     profiles = {
@@ -342,9 +343,6 @@
                  zsh-history-substring-search
                  grml-zsh-config
                  sbctl
-                 cudaPackages.cudatoolkit
-                 cudaPackages.cudnn
-                 
 
               ];
               };
