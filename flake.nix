@@ -126,6 +126,9 @@
                 # Load history-substring-search
                 source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+                # Load nix-shell zsh 
+                source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/zsh-nix-shell.nix
+                
                 # Optional: Set history-substring-search bindings
                 bindkey '^[[A' history-substring-search-up
                 bindkey '^[[B' history-substring-search-down
