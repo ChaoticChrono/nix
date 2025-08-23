@@ -319,7 +319,6 @@
                  gnome-tweaks
                  git
                  lz4
-                 azahar
                  ryubing
                  tpm2-tss 
                  wl-clipboard
