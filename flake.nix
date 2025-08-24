@@ -140,6 +140,8 @@
 
                 promptInit = "";
                 };
+                nix-required-mounts.presets.nvidia-gpu.enable = true;
+                
               };
               networking = { 
                 hostName = "nixos";
