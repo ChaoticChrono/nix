@@ -108,8 +108,12 @@
               zsh = {
               enable = true;
               enableCompletion = true;
+              autosuggestions.enable = true;
               syntaxHighlighting.enable = true;
-              
+              enableBashCompletion = true;
+              zsh-autoenv.enable = true;
+              enableGlobalCompInit = true;
+              enableLsColors = true;
               shellAliases = {
                 ll = "ls -l";
                 nix = "noglob nix" ;
@@ -119,9 +123,6 @@
               interactiveShellInit = ''
                 # Load GRML config (provides key bindings, colors, etc.)
                 source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-
-                # Load autosuggestions
-                source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
                 # Load history-substring-search
                 source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -339,11 +340,6 @@
                  gnomeExtensions.adw-gtk3-colorizer
                  gnomeExtensions.pip-on-top
                  (pkgs.uutils-coreutils.override { prefix = ""; })
-                 zsh
-                 #zsh-autosuggestions
-                 #zsh-syntax-highlighting
-                 #zsh-history-substring-search
-                 #grml-zsh-config
                  sbctl
 
               ];
