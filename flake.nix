@@ -5,17 +5,14 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
-   
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";   
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, ... }: {
+  outputs = { self, nixpkgs, lanzaboote, chaotic, ... }: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -24,7 +21,7 @@
           
           ./hardware-configuration.nix
           lanzaboote.nixosModules.lanzaboote
-          nixos-hardware.nixosModules.common-cpu-intel
+          chaotic.nixosModules.default
           ({ config, pkgs, lib, ... }: {
              
               boot = {
@@ -50,7 +47,7 @@
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
               };
-              kernelPackages = pkgs.linuxPackages_zen;
+              kernelPackages = pkgs.linuxPackages_cachyos;
               initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
@@ -185,6 +182,11 @@
                 flatpak.enable = true;
                 udev.packages = with pkgs; [ gnome-settings-daemon ];
                 switcherooControl.enable = true;
+                scx = {
+                  enable = true;
+                  scheduler = "scx_rusty";
+                  package = pkgs.scx_git.full;
+                };
                 displayManager.gdm = {
                   enable = true;
                   wayland = true;
