@@ -272,30 +272,14 @@
                  ved = {
                  isNormalUser = true;
                  description = "Vedanta Singh";
-                 extraGroups = [ "networkmanager" "wheel" "video" "audio" "input" "podman" ];
+                 extraGroups = [ "networkmanager" "wheel" "video" "audio" "input" ];
                  uid = 1000;
-                 home = "/home/ved";
-                 subGidRanges = [
-                 {
-                  count = 65536;
-                  startGid = 1001;
-                 }
-                 ];
-                  subUidRanges = [
-                    {
-                  count = 65536;
-                  startUid = 1001;
-                    }
-                   ];                  
+                 home = "/home/ved";                  
                   };
                 };
               };
               virtualisation = { 
               waydroid.enable = true;
-              podman = {
-               enable = true;
-               dockerCompat = true;
-              };
               };              
               environment = {
               sessionVariables = { 
@@ -361,7 +345,6 @@
                  gnomeExtensions.pip-on-top
                  (pkgs.uutils-coreutils.override { prefix = ""; })
                  sbctl
-                 distrobox
               ];
               };
                
