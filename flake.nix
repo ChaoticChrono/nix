@@ -328,6 +328,7 @@
                  git
                  lz4
                  ryubing
+                 azahar
                  tpm2-tss 
                  wl-clipboard
                  ffmpegthumbnailer
