@@ -138,7 +138,6 @@
 
                 promptInit = "";
                 };
-                nix-required-mounts.presets.nvidia-gpu.enable = true;
                 
               };
               networking = { 
@@ -252,19 +251,30 @@
               hardware = {
                 graphics = {
                   enable = true;
-                  };
+                  extraPackages = with pkgs; [
+                   intel-media-driver
+                   intel-vaapi-driver 
+                   libvdpau-va-gl
+                   vpl-gpu-rt
+                   intel-media-sdk
+                   ];
+                };
                 nvidia = {
                   open = true;
+                  modesetting.enable = true;
+                  powerManagement.enable = true;
+                  powerManagement.finegrained = true;
+                  nvidiaSettings = true;
                   prime = {
                     offload = {
-                      enable = true;
-                      
+                      enable = true;      
                       enableOffloadCmd = true;
                     };
                   intelBusId = "PCI:0:2:0";
                   nvidiaBusId = "PCI:1:0:0";
                   };
                 };
+                
                 };
                users = { 
                  defaultUserShell = pkgs.zsh;
