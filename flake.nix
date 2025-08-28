@@ -71,7 +71,7 @@
                terminal = "ghostty";
               }; 
               firefox.enable = true;
-              firefox.package = firefox-bin;
+              firefox.package = pkgs.firefox-bin;
               nix-ld.enable = true;
               direnv.nix-direnv.enable = true;
               direnv.loadInNixShell = true;
