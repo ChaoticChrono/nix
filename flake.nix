@@ -257,6 +257,7 @@
                    libvdpau-va-gl
                    vpl-gpu-rt
                    intel-media-sdk
+                   nvidia-vaapi-driver
                    ];
                 };
                 nvidia = {
