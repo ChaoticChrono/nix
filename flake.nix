@@ -253,7 +253,6 @@
                 graphics = {
                   enable = true;
                   enable32Bit = true;
-                  setLdLibraryPath = true;
                   extraPackages = with pkgs; [
                    intel-media-driver
                    intel-vaapi-driver 
@@ -422,6 +421,14 @@
                  allowUnfree = true;
                  cudaSupport = true;
                }; 
+               overlays = [
+                 (final: prev: {
+                  mesa = prev.mesa.override {
+                  galliumDrivers = [ "iris"];
+                  vulkanDrivers  = [ "intel"];
+               };
+               })
+               ];
               };
               nix = { 
                settings = { 
