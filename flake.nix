@@ -420,16 +420,7 @@
                 config = {
                  allowUnfree = true;
                  cudaSupport = true;
-               }; 
-               overlays = [
-                 (final: prev: {
-                  mesa = prev.mesa.override {
-                  galliumDrivers = [ "iris"];
-                  vulkanDrivers  = [ "intel"];
-                  galliumEnableVdpau = false;
                };
-               })
-               ];
               };
               nix = { 
                settings = { 
