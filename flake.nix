@@ -267,7 +267,6 @@
                   powerManagement.finegrained = true;
                   nvidiaSettings = true;
                   videoAcceleration = true;
-                  nvidiaPersistenced = true;
                   dynamicBoost.enable = true;
                   package = config.boot.kernelPackages.nvidiaPackages.stable;
                   prime = {
