@@ -426,6 +426,7 @@
                   mesa = prev.mesa.override {
                   galliumDrivers = [ "iris"];
                   vulkanDrivers  = [ "intel"];
+                  videoCodecs = [ "va" ];
                };
                })
                ];
