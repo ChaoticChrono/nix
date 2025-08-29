@@ -252,6 +252,8 @@
                 bluetooth.enable = true;
                 graphics = {
                   enable = true;
+                  enable32Bit = true;
+                  setLdLibraryPath = true;
                   extraPackages = with pkgs; [
                    intel-media-driver
                    intel-vaapi-driver 
