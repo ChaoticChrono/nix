@@ -266,6 +266,9 @@
                   powerManagement.enable = true;
                   powerManagement.finegrained = true;
                   nvidiaSettings = true;
+                  videoAcceleration = true;
+                  nvidiaPersistenced = true;
+                  dynamicBoost.enable = true;
                   prime = {
                     offload = {
                       enable = true;      
