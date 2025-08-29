@@ -259,6 +259,14 @@
                    libvdpau-va-gl
                    vpl-gpu-rt
                    nvidia-vaapi-driver
+                   vulkan-loader
+                   vulkan-validation-layers
+                   vulkan-tools
+                   ];
+                   extraPackages32 = with pkgs.pkgsi686Linux; [
+                   libva
+                   libvdpau
+                   vulkan-loader
                    ];
                 };
                 nvidia = {
