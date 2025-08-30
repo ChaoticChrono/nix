@@ -258,7 +258,6 @@
                    intel-vaapi-driver 
                    libvdpau-va-gl
                    vpl-gpu-rt
-                   nvidia-vaapi-driver
                    vulkan-loader
                    vulkan-validation-layers
                    vulkan-tools
