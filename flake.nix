@@ -320,6 +320,10 @@
                VISUAL = "nano";
                NIX_CFLAGS_COMPILE = "-fstack-protector-strong -D_FORTIFY_SOURCE=2";
                NIX_LDFLAGS = "-Wl,-z,relro,-z,now";
+               
+               __NV_PRIME_RENDER_OFFLOAD = "1";
+               __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+               MESA_LOADER_DRIVER_OVERRIDE = "nvidia";
               };
               shellAliases = { sudo = "doas"; };
               shells = with pkgs; [ zsh ];
@@ -348,6 +352,7 @@
                  btop
                  showtime
                  papers
+                 spotify
                  sbctl
                  adw-gtk3
                  xdg-terminal-exec
