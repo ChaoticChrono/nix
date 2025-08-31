@@ -452,6 +452,8 @@
                 experimental-features = [ "nix-command" "flakes" ];
                 auto-optimise-store = true;
                 trusted-users = [ "root" "ved" ];
+                max-jobs = 2;
+                cores = 4;
               };
               gc = {
                automatic = true;
