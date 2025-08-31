@@ -314,8 +314,6 @@
               };
               etc = { 
                 "resolv.conf".source = "/run/systemd/resolve/stub-resolv.conf";
-                "vulkan/icd.d/libvulkan_dzn.json".text = ''
-                 '';
                };
               variables = {
                EDITOR = "nano";
