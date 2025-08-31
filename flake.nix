@@ -425,6 +425,9 @@
                 config = {
                  allowUnfree = true;
                  cudaSupport = true;
+                  permittedInsecurePackages = [
+                  "libsoup-2.74.3"
+                ];
                };
                 overlays = [
                  (final: prev: {
