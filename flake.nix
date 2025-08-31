@@ -312,7 +312,11 @@
                 NIXOS_OZONE_WL = "1";
                 LIBVA_DRIVER_NAME = "iHD";
               };
-              etc."resolv.conf".source = "/run/systemd/resolve/stub-resolv.conf";
+              etc = { 
+                "resolv.conf".source = "/run/systemd/resolve/stub-resolv.conf";
+                "vulkan/icd.d/libvulkan_dzn.json".text = ''
+                 '';
+               };
               variables = {
                EDITOR = "nano";
                VISUAL = "nano";
