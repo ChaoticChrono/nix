@@ -304,8 +304,7 @@
                   };
                 };
               };
-              virtualisation = { 
-              waydroid.enable = true;
+              virtualisation = {
               };              
               environment = {
               sessionVariables = { 
