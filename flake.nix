@@ -256,14 +256,20 @@
                   extraPackages = with pkgs; [
                    intel-media-driver
                    vpl-gpu-rt
+                   nvidia-vaapi-driver
                    vulkan-loader
                    vulkan-validation-layers
                    vulkan-tools
+                   vulkan-headers
+                   vulkan-extension-layer
                    ];
                    extraPackages32 = with pkgs.pkgsi686Linux; [
                    libva
                    libvdpau
                    vulkan-loader
+                   vulkan-tools
+                   vulkan-validation-layers
+                   vulkan-extension-layer
                    ];
                 };
                 nvidia = {
