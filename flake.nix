@@ -426,6 +426,16 @@
                  allowUnfree = true;
                  cudaSupport = true;
                };
+                overlays = [
+                 (final: prev: {
+                gnome = prev.gnome.overrideScope (gfinal: gprev: {
+                   gvfs = gprev.gvfs.override {
+                    googleSupport = true;
+                    gnomeSupport = true;
+                   };
+                  });
+                })
+               ];
               };
               nix = { 
                settings = { 
