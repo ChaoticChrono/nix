@@ -47,7 +47,7 @@
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
               };
-              kernelPackages = pkgs.linuxPackages_cachyos;
+              kernelPackages = pkgs.linuxPackages_cachyos_lts;
               initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
