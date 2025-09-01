@@ -47,7 +47,7 @@
                 systemd-boot.enable = lib.mkForce false;
                 efi.canTouchEfiVariables = true;
               };
-              kernelPackages = pkgs.linuxPackages_cachyos_lts;
+              kernelPackages = pkgs.linuxPackages_cachyos;
               initrd.systemd.enable = true;
               lanzaboote = {
                enable = true;
@@ -342,6 +342,7 @@
                  gnome-connections
                  gnome-font-viewer
                  gnome-console
+                 gnome-software
                ];
               systemPackages = with pkgs; [
                  btop
