@@ -379,7 +379,7 @@
                powerManagement = {
                  enable = true;
                  powertop.enable = true;
-                 cpuFreqGovernor = "schedutil";
+                 cpuFreqGovernor = "Ondemand";
                };
                 systemd.tmpfiles.rules = [
                  ''f+ /run/gdm/.config/monitors.xml - gdm gdm - <monitors version="2"><configuration><layoutmode>logical</layoutmode><logicalmonitor><x>0</x><y>0</y><scale>1.5</scale><primary>yes</primary><monitor><monitorspec><connector>eDP-1</connector><vendor>AUO</vendor><product>0xd1ed</product><serial>0x00000000</serial></monitorspec><mode><width>1920</width><height>1080</height><rate>120.213</rate></mode></monitor></logicalmonitor></configuration></monitors>''
