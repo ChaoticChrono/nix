@@ -280,7 +280,7 @@
                   nvidiaSettings = true;
                   videoAcceleration = true;
                   dynamicBoost.enable = true;
-                  package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+                  package = config.boot.kernelPackages.nvidiaPackages.latest;
                   prime = {
                     offload = {
                       enable = true;      
