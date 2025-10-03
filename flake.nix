@@ -63,8 +63,8 @@
               
               programs = {
               java = { enable = true; package = pkgs.temurin-bin; };
-              appimage.binfmt = true;
-              appimage.enable = true;
+              #appimage.binfmt = true;
+              #appimage.enable = true;
               
               nautilus-open-any-terminal = {
                enable = true;
@@ -77,7 +77,6 @@
               direnv.loadInNixShell = true;
               direnv.enableZshIntegration = true;
               direnv.enable = true;
-              vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
               nano.enable = true;
               gamemode.enable = true;
               dconf = {
@@ -198,8 +197,8 @@
                    '';
                   };
                 dbus = {
-	                enable = true;
-	                implementation = "broker";
+	          enable = true;
+	          implementation = "broker";
                   };
                 pulseaudio.enable = false;
                 pipewire = {
@@ -355,14 +354,11 @@
                  gnome-tweaks
                  git
                  lz4
-                 ryubing
                  tpm2-tss 
                  wl-clipboard
                  ffmpegthumbnailer
                  ghostty
-                 signal-desktop
-                 bashInteractive
-                 vscode.fhs 
+                 signal-desktop 
                  apparmor-utils 
                  apparmor-profiles
                  gnomeExtensions.appindicator
